@@ -5,7 +5,7 @@ use expense_management_system;
 create table User(
 	user_id int primary key auto_increment,
 	username varchar(50) UNIQUE,
-	password VARCHAR(100) NOT NULL,
+	password VARCHAR(255) NOT NULL,
 	user_type varchar(50),
 	email varchar(20),
 	phone_num varchar(15),

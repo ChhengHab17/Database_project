@@ -4,7 +4,6 @@ use expense_management_system;
 delimiter &&
 
 create procedure add_expense (
-	in p_expense_id int,
 	in p_amount decimal(9, 2),
 	in p_expense_date date,
 	in p_transaction_type varchar(10),
@@ -14,8 +13,8 @@ create procedure add_expense (
 	in p_category_id int
 )
 begin 
-	insert into Expense(expense_id,amount, expense_date, transaction_type, expense_note, currency, user_id, category_id)
-	values (p_expense_id, p_amount, p_expense_date, p_transaction_type, p_expense_note, p_currency, p_user_id, p_category_id);
+	insert into Expense(amount, expense_date, transaction_type, expense_note, currency, user_id, category_id)
+	values (p_amount, p_expense_date, p_transaction_type, p_expense_note, p_currency, p_user_id, p_category_id);
 end &&
 
 delimiter ;
@@ -95,14 +94,12 @@ delimiter ;
 delimiter $$
 
 create procedure add_category (
-    in p_category_id int,
     in p_name varchar(50),
-    in p_detail varchar(255),
-    in p_user_id int
+    in p_detail varchar(255)
 )
 begin
-    insert into category (category_id, name, detail, user_id)
-    values (p_category_id, p_name, p_detail, p_user_id);
+    insert into category ( name, detail)
+    values ( p_name, p_detail);
 end$$
 
 delimiter ;
@@ -124,7 +121,7 @@ end$$
 
 delimiter ;
 
--- delete category delimiter $$
+-- delete category
 delimiter $$
 
 create procedure delete_category (

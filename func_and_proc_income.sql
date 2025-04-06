@@ -104,14 +104,13 @@ begin
 	declare total_expense_usd decimal(9,2);
 
     SET total_income_usd = getTotalIncome(input_user_id);
-    SELECT SUM(
+    SELECT IFNULL(SUM(
         CASE 
             WHEN e.currency = 'USD' THEN e.amount
             WHEN e.currency = 'KHR' THEN e.amount / 4100
             ELSE 0
         END
-    )
-    INTO total_expense_usd
+    ), 0) INTO total_expense_usd
     FROM Expense e
     WHERE e.user_id = input_user_id
       AND MONTH(e.expense_date) = input_month
@@ -132,5 +131,5 @@ END &&
 
 DELIMITER ;
 
-CALL get_monthly_history(1, 4, 2025);
+CALL get_monthly_history(1, 3, 2025);
 

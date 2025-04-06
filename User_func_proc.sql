@@ -6,7 +6,7 @@ CREATE PROCEDURE register_user (
     IN p_email VARCHAR(50),
     IN p_phone_num VARCHAR(15),
     IN p_password VARCHAR(255),
-    IN p_user_type VARCHAR(20)
+    IN p_user_type VARCHAR(50)
 )
 BEGIN
     DECLARE user_exists INT DEFAULT 0;
@@ -154,7 +154,7 @@ BEGIN
 END //
 
 DELIMITER ;
-CALL update_user_password(13, 'mySecureNewPass13');
+CALL update_user_password(2, '23412332');
 -- updaate user type
 DELIMITER //
 
@@ -185,20 +185,4 @@ END //
 DELIMITER ;
 call update_user_type ('jame', 'Student');
 -- view
-CREATE VIEW user_profile_summary AS
-SELECT 
-    u.user_id,
-    u.username,
-    u.email,
-    u.phone_num,
-    b.weekly_budget,
-    b.monthly_budget,
-    i.amount AS income_amount,
-    i.currency AS income_currency,
-    (SELECT SUM(e.amount) 
-     FROM Expense e 
-     WHERE e.user_id = u.user_id) AS total_expense
-FROM user u
-LEFT JOIN Budget b ON u.user_id = b.user_id
-LEFT JOIN Income i ON u.user_id = i.user_id;
-select * from user_profile_summary;
+
