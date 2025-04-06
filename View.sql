@@ -30,3 +30,28 @@ FROM Income i
 JOIN User u ON i.user_id = u.user_id;
 
 SELECT * FROM view_income_details;
+-- view for expense
+create view view_expense_details as
+select 
+    e.expense_id,
+    e.user_id,
+    u.username,
+    e.category_id,
+    c.name as category_name,
+    c.detail as category_detail,
+    e.expense_note,
+    e.amount,
+    e.currency,
+    e.expense_date,
+    e.transaction_type
+from expense e
+join user u on e.user_id = u.user_id
+join category c on e.category_id = c.category_id;
+
+-- view for category
+create view view_categories as
+select 
+    c.category_id,
+    c.name,
+    c.Detail
+from category c;

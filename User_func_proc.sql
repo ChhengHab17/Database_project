@@ -183,6 +183,30 @@ BEGIN
 END //
 
 DELIMITER ;
+DELIMITER //
+
+CREATE PROCEDURE delete_user (
+    IN p_user_id INT
+)
+BEGIN
+    DECLARE user_exists INT DEFAULT 0;
+
+    -- Check if the user exists
+    SELECT COUNT(*) INTO user_exists
+    FROM User
+    WHERE user_id = p_user_id;
+
+    IF user_exists = 0 THEN
+        SELECT 'User not found.' AS message;
+    ELSE
+        -- Delete the user
+        DELETE FROM User
+        WHERE user_id = p_user_id;
+
+        SELECT 'User deleted successfully.' AS message;
+    END IF;
+END //
+
+DELIMITER ;
 call update_user_type ('jame', 'Student');
--- view
 

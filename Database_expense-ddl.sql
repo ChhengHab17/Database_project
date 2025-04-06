@@ -18,7 +18,6 @@ create table Category(
 	category_id int primary key auto_increment,
 	name varchar(50),
 	Detail varchar(255),
-	user_id int
 
 );
 

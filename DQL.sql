@@ -1,13 +1,44 @@
 
 -- query data expenses
 select 
-	e.expense_id, e.amount, e.currency, e.expense_date, e.expense_note, e.transaction_type, c.name category_name, c.Detail
+  e.expense_id, e.amount, e.currency, e.expense_date, e.expense_note, e.transaction_type, c.name category_name, c.Detail
 from expense e
 join category c on e.category_id = c.category_id 
 where e.user_id = 1;
 
+-- total expense of a user
+select e.user_id, sum(e.amount) as total_expense
+from expense e
+group by e.user_id;
+
+-- total daily expense
+select e.user_id, e.expense_date, sum(e.amount) as daily_total
+from expense e
+group by e.user_id, e.expense_date
+order by e.user_id, e.expense_date;
+
+-- total expense by category
+select e.category_id, sum(e.amount) as total_by_category
+from expense e
+group by e.category_id;
+
 -- query data category
 select * from category c;
+
+-- find category using id
+select * from category c
+where c.category_id = 1;
+
+-- find caetgory using keyword
+select * 
+from category c
+where c.Detail like '%food%';
+
+-- count expenses in a category
+select c.name, count(e.expense_id) as total_expenses
+from category c
+left join expense e on c.category_id = e.category_id
+group by c.category_id, c.name;
 
 -- User 
 SELECT * FROM user;
