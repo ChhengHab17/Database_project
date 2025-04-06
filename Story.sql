@@ -2,7 +2,7 @@
 CALL register_user('johndoe', 'jon@example.com', '1234567890', 'secret123', 'Student');
 
 -- User want to change their username
-CALL update_username(3, 'Alex');
+CALL update_username(3, 'Alexza');
 
 -- User want to Update email
 CALL update_user_email(3, 'alex12@gmail.com');
