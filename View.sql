@@ -55,3 +55,12 @@ select
     c.name,
     c.Detail
 from category c;
+
+create view view_budget_details AS
+select
+ b.user_id,
+ b.weekly_budget,
+ b.monthly_budget,
+ convert_currency(b.weekly_budget, 'USD', 'KHR') as convertedWeeklyBudget,
+ convert_currency(b.monthly_budget, 'USD', 'KHR') as convertedMonthlyBudget
+from Budget b;

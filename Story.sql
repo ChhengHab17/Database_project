@@ -17,7 +17,7 @@ CALL update_user_password(2, '23412332');
 CALL update_user_type('Alex', 'Umemployed');
 
 -- We want to remove user account
-
+call delete_user(5);
 
 -- User want to add expense
 CALL add_expense(50.75,'2025-04-05','Cash','Lunch at cafe', 'USD',1 , 2);
@@ -66,6 +66,15 @@ SELECT getAverageIncome(1);
 
 -- User want to get their monthly history
 CALL get_monthly_history(1, 4, 2025);
+
+-- User want to add budget
+CALL insert_budget(150.00, 600.00, 'USD', 1);
+
+-- User want to edit budget
+CALL edit_budget(1, 300.00, 1200.00, 'USD');
+
+-- User want to delete budget
+CALL delete_budget(8);
 
 
 

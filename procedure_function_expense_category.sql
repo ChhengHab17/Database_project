@@ -90,6 +90,40 @@ end$$
 
 delimiter ;
 
+-- average expense daily
+delimiter $$
+
+create function get_average_expense_per_day()
+returns decimal(9,2)
+begin
+    declare avg_daily decimal(9,2);
+
+    select sum(e.amount) / count(distinct e.expense_date) 
+    into avg_daily
+    from expense e;
+
+    return avg_daily;
+end$$
+
+delimiter ;
+
+-- average in a month
+delimiter $$
+
+create function get_average_expense_per_month()
+returns decimal(9,2)
+begin
+    declare avg_monthly decimal(9,2);
+
+    select sum(e.amount) / count(distinct date_format(e.expense_date, '%Y-%m'))
+    into avg_monthly
+    from expense e;
+
+    return avg_monthly;
+end$$
+
+delimiter ;
+
 -- add new category
 delimiter $$
 

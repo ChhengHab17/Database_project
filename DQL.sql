@@ -1,4 +1,3 @@
-
 -- query data expenses
 select 
   e.expense_id, e.amount, e.currency, e.expense_date, e.expense_note, e.transaction_type, c.name category_name, c.Detail
