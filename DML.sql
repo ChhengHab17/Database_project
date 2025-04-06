@@ -7,9 +7,7 @@ values
 	('alex_brown', 'alex@example.com', '099887766', '233445566', 'employed'),
 	('emma_white', 'emma@example.com', '011223344', '123456789', 'Unemployed'),
 	('mike_jones', 'mike@example.com', '012345678', '000000000', 'employed');
-update user 
-set user_type = 'Unemployed'
-where user_id = 4;
+
 insert into budget (currency, weekly_budget, monthly_budget, user_id)
 values 	
 	('USD', 200.00, 800.00, 1),

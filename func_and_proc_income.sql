@@ -92,5 +92,45 @@ begin
 end &&
 
 DELIMITER ;
+DELIMITER &&
 
+CREATE PROCEDURE get_monthly_history(
+    IN input_user_id INT,
+    IN input_month INT,
+    IN input_year INT
+)
+begin
+	declare total_income_usd decimal(9,2);
+	declare total_expense_usd decimal(9,2);
+
+    SET total_income_usd = getTotalIncome(input_user_id);
+    SELECT SUM(
+        CASE 
+            WHEN e.currency = 'USD' THEN e.amount
+            WHEN e.currency = 'KHR' THEN e.amount / 4100
+            ELSE 0
+        END
+    )
+    INTO total_expense_usd
+    FROM Expense e
+    WHERE e.user_id = input_user_id
+      AND MONTH(e.expense_date) = input_month
+      AND YEAR(e.expense_date) = input_year;
+
+    SELECT 
+        u.user_id,
+        u.username,
+        b.monthly_budget,
+        b.currency AS currency,
+        total_income_usd AS total_income,
+        total_expense_usd AS total_expense
+
+    FROM User u
+    LEFT JOIN Budget b ON u.user_id = b.user_id
+    WHERE u.user_id = input_user_id;
+END &&
+
+DELIMITER ;
+
+CALL get_monthly_history(1, 4, 2025);
 
