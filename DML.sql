@@ -2,12 +2,14 @@ use expense_management_system;
 
 insert into user (username, email, phone_num, password)
 values 	
-	('john_doe', 'john@example.com', '088976655', '12345678'),
-	('jane_smith', 'jane@example.com', '098765678', '23412332'),
-	('alex_brown', 'alex@example.com', '099887766', '233445566'),
-	('emma_white', 'emma@example.com', '011223344', '123456789'),
-	('mike_jones', 'mike@example.com', '012345678', '000000000');
-
+	('john_doe', 'john@example.com', '088976655', '12345678','Unemployed'),
+	('jane_smith', 'jane@example.com', '098765678', '23412332','Unemployed'),
+	('alex_brown', 'alex@example.com', '099887766', '233445566', 'employed'),
+	('emma_white', 'emma@example.com', '011223344', '123456789', 'Unemployed'),
+	('mike_jones', 'mike@example.com', '012345678', '000000000', 'employed');
+update user 
+set user_type = 'Unemployed'
+where user_id = 4;
 insert into budget (currency, weekly_budget, monthly_budget, user_id)
 values 	
 	('USD', 200.00, 800.00, 1),

@@ -6,6 +6,7 @@ create table User(
 	user_id int primary key auto_increment,
 	username varchar(50) UNIQUE,
 	password VARCHAR(100) NOT NULL,
+	user_type varchar(50),
 	email varchar(20),
 	phone_num varchar(15),
 	create_at timestamp default CURRENT_TIMESTAMP
